@@ -4,7 +4,9 @@ Slides from previous meetups:
 
 ## January 2018
 
-[Progressive Vue.js Development](http://slides.com/doebi/vuennajs#/), by Christoph Döberl
+[Authentication with Vue.js and Laravel](./2018/january/authentication-with-vue-js/slides.pdf), by Philip Peinsold.
+
+[Progressive Vue.js Development](http://slides.com/doebi/vuennajs#/), by Christoph Döberl.
 
 ## December 2017
 
