@@ -3,7 +3,7 @@
 Slides from previous meetups:
 ## Febrary 2018
 
-[Vue with Typescript](./2018/february/Vue-with-typescript/VueTs.pdf), by Radim.
+[Vue with Typescript](./2018/february/Vue-with-Typescript/VueTs.pdf), by Radim.
 
 ## January 2018
 
