@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue.js kanban board using vue-kanban</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+# VUE.JS KANBAN BOARD
+# USING VUE-KANBAN
+
+---
+
+# Speaker
+
+Robert Axelsen  
+[@robaxelsen](https://twitter.com/robaxelsen)
+
+```javascript
+var about = {
+    main_occupation: 'Web Developer',
+    additional_occupations: ['meetup organizer', 'speaker', 'community dude'],
+    meetups_founded: ['Free Code Camp Vienna', 'Vue.js Vienna', 'vienna.go'],
+    loves: 'code and people'
+}
+```
+
+---
+
+# Vue-kanban
+
+Vue-kanban is a **"Vue adoptation of [Ettric's Codepen](https://codepen.io/ettrics/pen/QbPEeg)"**, available in the form of an npm package.
+
+Features:
+* Simple to use
+* Customizable via slots
+* Comes with sass style that can be easily modified
+* Creates "blocks" (board items) based on predefined block data structure
+
+---
+
+# Installation
+
+Create a new vue project using vue-cli.
+
+```bash
+vue init webpack-simple kanban
+yarn add vue-kanban
+```
+
+Install vue-kanban
+
+```javascript
+import vueKanban from 'vue-kanban'
+Vue.use(vueKanban)
+```
+
+---
+
+# Usage
+
+Use the component in your project.
+
+```xml
+<kanban-board :stages="stages" :blocks="blocks"></kanban-board>
+```
+
+Add block and column state.
+
+```javascript
+data() {
+	return {
+		stages: ["on-hold", "in-progress", "needs-review", "approved"],
+		blocks: [
+			{
+    			id: 0,
+    			status: "approved",
+    			title: "Buy coffee machine"
+  			},
+  			{
+    			id: 1,
+    			status: "in-progress",
+    			title: "Find better AirBnB options"
+  			}
+		]
+	}
+}
+```
+
+---
+
+# Demo
+
+.left[![Demo machine gif](./demo-machine.gif)]
+
+---
+
+# Slides
+
+These slides were created using Remark.js and vim.
+
+Slides available at:  
+[Slides](slides)
+
+Remark.js:  
+[https://github.com/gnab/remark](https://github.com/gnab/remark)
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var hljs = remark.highlighter.engine;
+    </script>
+    <script src="remark.language.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+  </body>
+</html>

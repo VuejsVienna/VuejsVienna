@@ -1,6 +1,11 @@
 # Talks
 
 Slides from previous meetups:
+
+## June 2018
+
+[Vue.js kanban board using vue-kanban](./2018/june/vue-js-kanban-board-using-vue-kanban/), by [Robert Axelsen](http://rob.ee)
+
 ## Febrary 2018
 
 [Vue with Typescript](./2018/february/Vue-with-Typescript/VueTs.pdf), by Radim.
