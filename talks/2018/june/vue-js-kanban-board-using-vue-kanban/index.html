@@ -109,10 +109,11 @@ Create a new vue project using vue-cli.
 
 ```bash
 vue init webpack-simple kanban
+npm install --save-dev babel-plugin-transform-runtime babel-preset-stage-2
 yarn add vue-kanban
 ```
 
-Install vue-kanban
+Import vue-kanban in main.js
 
 ```javascript
 import vueKanban from 'vue-kanban'
@@ -121,13 +122,26 @@ Vue.use(vueKanban)
 
 ---
 
-# Usage
+# Usage in template
 
 Use the component in your project.
 
 ```xml
-<kanban-board :stages="stages" :blocks="blocks"></kanban-board>
+<kanban-board :stages="stages" :blocks="blocks" @update-block="updateBlock">
+  <div v-for="block in blocks" :slot="block.id" :key="block.id">
+	<div>
+	  <strong>id:</strong> {{ block.id }}
+	</div>
+	<div>
+	  {{ block.title }}
+	</div>
+  </div>
+</kanban-board>
 ```
+
+---
+
+#Usage in script
 
 Add block and column state.
 
@@ -149,6 +163,18 @@ data() {
 		]
 	}
 }
+```
+
+---
+
+# CSS
+
+Import default css, [available here](https://github.com/BrockReece/vue-kanban/blob/master/src/assets/kanban.scss).
+
+```xml
+<style lang="scss">
+@import "./assets/kanban.scss";
+</style>
 ```
 
 ---
