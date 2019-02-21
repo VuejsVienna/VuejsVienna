@@ -27,7 +27,7 @@
       .red { color: #fa0000; }
       .large { font-size: 2em; }
       a, a > code {
-        color: rgb(249, 38, 114);
+        color: rgb(252, 61, 49);
         text-decoration: none;
       }
       code {
@@ -70,7 +70,9 @@
 
 class: center, middle
 
-# Vue.js With Hasura
+# Vue.js With Hasura Real-time GraphQL  
+
+.center[![Stack logos](./logos.png)]
 
 ---
 
@@ -90,44 +92,97 @@ var about = {
 
 ---
 
-# Hasura
+# What is Hasura?
 
 Instant Realtime GraphQL on Postgres
 
 Features:
-* Powerful queries out-of-the-box
+* Powerful queries out-of-the-box for your CRUD needs
 * Realtime with subscriptions & live-queries
 * Dynamic access control that integrates with your auth
-* Merge Remote GraphQL schemas
-* Trigger webhooks on database events
+* Merge Remote GraphQL schemas, aka schema stitching
+* Webhooks on database events, for easy serverless integration
 * Add to an existing, live postgres database
-* Admin UI & Rails inspired schema migrations
+
+---
+
+# About Hasura
+
+* Fully open source service
+* Made with Haskell
+* Name is a combination of Haskell and Asura, which is sanskrit for demon
+* Created by a startup with the same name, based in India
+* Monetization via deployment and professional services
+* Plan to offer managed Hasura instances as well as commercial features in the feature.
+
+Hasura was built about 1 year and some months ago, and they releases the open source service 4-5 months ago. GraphQL was added first last year, after initial implementation with REST.
 
 ---
 
 # Installation Server Side
 
 1. Head over to https://hasura.io/ and click "Get Started With Heroku Free Tier"
-  - Follow guide and deploy to Heroku
-  - In Heroku dashboard, under Settings > Config Vars, set API TOKEN
-```bash
-KEY = HASURA_GRAPHQL_ACCESS_KEY
-VALUE = secret_token
-```  
+  - Click "Deploy to Heroku" and follow guided steps
 
 1. Click "Open App" to get to Hasura Dashboard  
 
-1. Create table and add data in "DATA" tab
+---
+
+# Create Table
+
+1. Click "DATA" tab
+
+1. Click "Create Table"
+
+.left[![Screenshot of creating table](./create_table.png)]
 
 ---
 
-# Database Setup and Data
+# Insert Data
+
+1. Click "Insert Row"
+
+1. Input data
+
+.left[![Screenshot of inserting data](./insert_data.png)]
+
+---
+
+# Query Data
+
+1. Click "GRAPHIQL" Tab
+
+1. Write query
+
+1. Click "Play" button
+
+.left[![Screenshot of querying data](./query_data.png)]
+
+---
+
+# Query Nested Data
+
+Can of course also perform nested GraphQL and more advanced queries.
+
+Prerequisite for the example below is that we also have an "owners" table with an array relationship to it in "cats" table.
+
+.left[![Screenshot of nested query for data](./nested_query.png)]
+
+---
+
+# Add Event Triggers
+
+1. Click on "EVENTS" tab and "Create Trigger"
+
+1. Create trigger and events triggered under "Processed Events"
+
+.left[![Screenshot of nested query for data](./event_hooks.png)]
 
 ---
 
 # Installation Client Side, 1
 
-Create a new vue project using vue-cli.
+Create a new Vue.js project using Vue CLI.
 
 ```bash
 npm install @vue/cli -g
@@ -141,12 +196,15 @@ vue add apollo
 ? Add example code? No
 ? Add a GraphQL API Server? No
 ```
+
+```bash
+vue add vuetify
+? Choose a preset: Default (recommended)
+```
+
 ---
 
 # Installation Client Side, 2
-
-Follow steps from Vue Apollo guide:  
-[https://vue-apollo.netlify.com/guide/installation.html#vue-cli-plugin](https://vue-apollo.netlify.com/guide/installation.html#vue-cli-plugin)
 
 In src/vue-apollo.js, add Hasura GraphQL https and websocket url.
 
@@ -157,14 +215,42 @@ const wsEndpoint = 'ws://appname.herokuapp.com/v1alpha1/graphql'
 
 ---
 
-# Demo App, Template Part
+# Connect Front-end to Back-end, 1
 
-Create CatCards component in your project.
+Test by making a GraphQL connection and query, by adding this code in HelloWorld.vue, within `<script></script>` tags.
+
+```javascript
+  import gql from 'graphql-tag'
+  export default {
+    data: () => ({
+    }),
+    apollo: {
+      cats: {
+        query: gql`
+          {
+            cats {
+              id
+              name
+              description
+              color
+              health
+              strength
+              claw_size
+            }
+          }
+        `
+      }
+    }
+  }
+```
+
+---
+
+# Connect Front-end to Back-end, 2
 
 ```xml
 <template>
     <div>
-        CAT CARDS!!
         {{ cats }}
     </div>
 </template>
@@ -172,39 +258,24 @@ Create CatCards component in your project.
 
 ---
 
-# Demo App - Script Part 1
+# Kittymon Demo App
 
-Create CatCards component in your project.
+Let's make an app where we use this data to make some fierce, ready-for-battle, kittymon cards!
 
-```xml
-<template>
-    <div>
-        CAT CARDS!!
-        {{ cats }}
-    </div>
-</template>
-```
+Kittymon.vue:  
+[https://gist.github.com/robaxelsen/7d3f0f1840af24c4a39081faa299680d](https://gist.github.com/robaxelsen/7d3f0f1840af24c4a39081faa299680d)
 
----
+App.vue:  
+https://gist.github.com/robaxelsen/8c83c97779656e3af1c0627c0c4abc95
 
-# Demo App - Script Part 2
-
-Create CatCards component in your project.
-
-```xml
-<script>
-    <div>
-        CAT CARDS!!
-        {{ cats }}
-    </div>
-</script>
-```
+Lipsum (for cat descriptions):  
+[https://www.lipsum.com/](https://www.lipsum.com/)
 
 ---
 
 # Demo
 
-.left[![Demo machine gif](./demo-machine.gif)]
+.left[![Kitten demoing an app gif](./kitty_demo.gif)]
 
 ---
 
@@ -222,8 +293,10 @@ Remark.js:
 
 # Hiring
 
-Sipwise is hiring:  
+Sipwise is looking for a Vue.js Developer:  
+  
 [https://www.sipwise.com/we-are-hiring/](https://www.sipwise.com/we-are-hiring/)  
+  
 [jobs@sipwise.com](mailto:jobs@sipwise.com)  
 
 .left[![Sipwise logo](./logo.svg)]
