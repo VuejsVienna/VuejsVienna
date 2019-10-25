@@ -2,6 +2,10 @@
 
 Slides from previous meetups:
 
+## October 2019
+
+[Intro Slides with Vue.js Amsterdam Discount and Hacktoberfest Link](./2019/october/2019-10-19-intro-slides-with-vuejs-amsterdam-discounts-and-hacktoberfest.pdf), by [Robert Axelsen](http://rob.ee)
+
 ## June 2018
 
 [Vue.js kanban board using vue-kanban](./2018/june/vue-js-kanban-board-using-vue-kanban/), by [Robert Axelsen](http://rob.ee)
